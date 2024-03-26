@@ -1,0 +1,11 @@
+{% extends "layouts/social.html" %}
+
+
+{% block content %}
+{% for post in posts %}
+
+{% include 'socialpost/post.html' %}
+
+{% endfor %}
+
+{% endblock %}
