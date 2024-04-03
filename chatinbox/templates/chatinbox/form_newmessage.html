@@ -1,4 +1,4 @@
-<div class="flex gap-2 items-center">
+{% comment %} <div class="flex gap-2 items-center">
     <span class="font-bold">To:</span>
     <div class="flex items-center gap-1">
         <img class="w-10 h-10 object-cover rounded-full mr-1" src="{{ recipient.profile.avatar }}">
@@ -14,4 +14,4 @@
         <button type="submit" class="mt-1">Submit Message</button>
         <a @click="modal_open = false" href="{{ reuest.META.HTTP_REFERER}}" class="button secondaryAction ml-1 cursor-pointer" _="on click reset() the closest <form/>">Cancel</a>
     </form>
-</div>
+</div> {% endcomment %}

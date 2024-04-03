@@ -1,4 +1,4 @@
-<ul id="user-list" class="mt-2">
+{% comment %} <ul id="user-list" class="mt-2">
     {% for user in users %}
     <li>
         <a href="" class="flax items-center gap-1 hover:bg-zinc-100 rounded-lg p-2 cursor-pointer" hx-get="{% url 'inbox-newmessage' user.id %}" hx-target="#new-message" hx-swap="innerHTML">
@@ -7,4 +7,4 @@
         </a>
     </li>
     {% endfor %}
-</ul>
+</ul> {% endcomment %}

@@ -21,7 +21,7 @@
         </div>
     </div>
     <div class="flex items-center gap-4 [&>a:hover]:underline">
-        {% comment %} {% include 'snippets/likes_reply.html' %} {% endcomment %}
+        {% include 'snippets/likes_reply.html' %}
         {% if user.is_authenticated and reply.author == user %}
         <a href="{% url 'reply-delete' reply.id %}">Delete</a>
         {% endif %}

@@ -6,18 +6,17 @@
 
 {% if user.is_authenticated %}
 <div class="card !pb-0 -mt-3">
-    <form method="POST" action="{% url 'comment-sent' post.id %}" class="flex items-center p-4" autocomplete="off"
-    hx-post="/"
+    <form  class="flex items-center p-4" autocomplete="off"
+    hx-post="{% url 'comment-sent' post.id %}"
     hx-target="#tab-contents"
-    hx-swap="afterbegin"
-    _="on htmx:afterRequest reset() me" >
+    hx-swap="afterbegin" >
         {% csrf_token %}
         {{ commentform }}
         <button @click="open = false" class="block ml-2" type="submit">Submit</button>
     </form>
 </div>
 {% endif %}
-
+{% if post.comments.count %}
 <div class="mb-20">
     <div id="tabs" class="ml-4 flex gap-1 mb-4 {% if not post.comments.count %}hidden{% endif %}" hx-target="#tab-contents" hx-swap="innerHTML"
     _="on htmx:afterOnLoad take .selected for event.target">
@@ -31,5 +30,5 @@
         {% endfor %}
     </div>
 </div>
-
+{% endif %}
 {% endblock %}

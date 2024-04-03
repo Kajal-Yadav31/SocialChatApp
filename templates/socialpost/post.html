@@ -38,7 +38,9 @@
                 {% endif %}
             </a>
             <div class="flex items-center gap-4 [&>a:hover]:underline">
-                <a href="">Like</a>
+
+                {% include 'snippets/likes.html' %}
+
                 {% if user.is_authenticated and user == post.author %}
                 <a href="{% url 'post-edit' post.id %}">Edit</a>
                 <a href="{% url 'post-delete' post.id %}">Delete</a>

@@ -48,7 +48,7 @@
             {% include 'socialpost/reply.html' %}
             {% endfor %}
 
-            {% if user.is_authenticated %}
+            {% comment %} {% if user.is_authenticated %} {% endcomment %}
             <form class="replyform flex justify-between" autocomplete="off"
             hx-post="{% url 'reply-sent' comment.id %}"
             hx-target="this"
@@ -57,7 +57,7 @@
                 {{ replyform }}
                 <button class="block" type="submit">Submit</button>
             </form>
-            {% endif %}
+            {% comment %} {% endif %} {% endcomment %}
         </div>
     </div>
 </comment>
