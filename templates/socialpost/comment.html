@@ -36,7 +36,7 @@
             {% endif %}
         </a>
         <div class="flex items-center gap-4 [&>a:hover]:underline">
-            {% comment %} {% include 'snippets/likes_comment.html' %} {% endcomment %}
+            {% include 'snippets/likes_comment.html' %}
             {% if user.is_authenticated and comment.author == user %}
             <a href="{% url 'comment-delete' comment.id %}">Delete</a>
             {% endif %}

@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,10 +42,6 @@ INSTALLED_APPS = [
     'Socialposts',
     'Socialuser',
     'chatinbox',
-    # 'django.contrib.sites',
-    # 'allauth',
-    # 'allauth.account',
-    # 'allauth.socialaccount',
 
 ]
 
@@ -58,7 +55,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # "allauth.account.middleware.AccountMiddleware",
 ]
 
 ROOT_URLCONF = 'SocialMedia.urls'
@@ -83,11 +79,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'SocialMedia.wsgi.application'
 
-
-# AUTHENTICATION_BACKENDS = [
-#     'django.contrib.auth.backends.ModelBackend',
-#     'allauth.account.auth_backends.AuthenticationBackend',
-# ]
+ASGI_APPLICATION = 'SocialMedia.asgi.application'
 
 
 # Database

@@ -12,13 +12,13 @@
 
             <!-- Contact List -->
             <div class="overflow-y-auto h-screen p-3 mb-9 pb-20">
+                {% for c in my_conversations %}
                 <div class="flex items-center mb-4 cursor-pointer hover:bg-gray-100 p-2 rounded-md">
-                    {% for c in my_conversations %}
-                    <div class="w-12 h-12 bg-gray-300 rounded-full mr-3">
 
-                    <a href="{% url 'inbox_view' c.id %}">
-                            {% for participant in c.participants.all %}
-                            {% if participant != request.user %}
+                    <div class="w-12 h-12 bg-gray-300 rounded-full mr-3">
+                        {% for participant in c.participants.all %}
+                        {% if participant != request.user %}
+                        <a href="{% url 'inbox_view' c.id %}">
                         <img src="{{ participant.profile.avatar}}" alt="User Avatar"
                             class="w-12 h-12 rounded-full">
                     </div>
@@ -26,12 +26,11 @@
                         <h2 class="text-lg font-semibold">{{participant.profile.name}}</h2>
 
                     </div>
+                    </a>
                     {% endif %}
                     {% endfor %}
-                    </a>
-
-                    {% endfor %}
                 </div>
+                {% endfor %}
             </div>
 
         </div>
@@ -168,16 +167,23 @@
             </div>
 
             <!-- Chat Input -->
-            <footer class="bg-white border-t border-gray-300 p-4 absolute bottom-0 w-3/4">
-                <div class="flex items-center">
-                    <input type="text" placeholder="Type a message..."
+            <footer class="bg-white border-t border-gray-300 p-4 absolute bottom-0 w-3/4  overflow-y-hidden">
+                <form id="send-message-form">
+                <div class="flex items-center align-bottom sticky bottom-0 overflow-y-hidden ">
+                    <div class="input-group-append" style="padding-right:9px; font-size: 1.4rem;">
+                        <span class="input-group-text attach_btn"><i class="fas fa-paperclip"></i></span>
+                    </div>
+                    <input type="text" placeholder="Type a message..." id="input-message"
                         class="w-full p-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500">
-                    <button class="bg-indigo-500 text-white px-4 py-2 rounded-md ml-2">Send</button>
+                    <button class="bg-indigo-500 text-white px-4 py-2 rounded-md ml-2"><span class="input-group-text send_btn">Send
+                        <i class="fas fa-location-arrow"></i>
+                    </span></button>
                 </div>
             </footer>
         </div>
     </div>
-    <script>
+    <script src="{% static 'chat.js' %}"></script>
+    {% comment %} <script>
         // JavaScript for showing/hiding the menu
         const menuButton = document.getElementById('menuButton');
         const menuDropdown = document.getElementById('menuDropdown');
@@ -196,7 +202,7 @@
                 menuDropdown.classList.add('hidden');
             }
         });
-    </script>
+    </script> {% endcomment %}
 {% endblock %}
 {% comment %} </body> {% endcomment %}
 {% comment %}
