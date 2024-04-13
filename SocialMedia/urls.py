@@ -23,7 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('social/', include('Socialposts.urls')),
     path('users/', include('Socialuser.urls')),
-    path('inbox/', include('chatinbox.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

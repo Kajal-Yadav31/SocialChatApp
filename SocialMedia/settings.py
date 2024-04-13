@@ -31,7 +31,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,8 +40,7 @@ INSTALLED_APPS = [
     'django_cleanup.apps.CleanupConfig',
     'Socialposts',
     'Socialuser',
-    'chatinbox',
-
+    'channels',
 ]
 
 # SITE_ID = 1
@@ -145,3 +143,12 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 ACCOUNT_USERNAME_BLACKLIST = [
     'admin', 'accounts', 'profile', 'category', 'post', 'inbox']
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer',
+        # 'CONFIG': {
+        #     'hosts': [('127.0.0.1', 6379)],
+        # }
+    }
+}
