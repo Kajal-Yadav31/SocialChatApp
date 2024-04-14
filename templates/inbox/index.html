@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block file %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
+
+{% block layout %}
+<div class="w-1/4 bg-white border-r border-gray-300">
+    <!-- Sidebar Header -->
+    <header class="p-4 border-b border-gray-300 flex justify-between items-center bg-indigo-600 text-white">
+        <h1 class="text-2xl font-semibold">Chat Web</h1>
+
+    </header>
+
+    <!-- Contact List -->
+    <div class="overflow-y-auto h-screen p-3 mb-9 pb-20">
+        {% for user in users %}
+        <div class="flex items-center mb-4 cursor-pointer hover:bg-gray-100 p-2 rounded-md">
+            <div class="w-12 h-12 bg-gray-300 rounded-full mr-3">
+                <img src="{{ user.profile.avatar }}" class="w-12 h-12 rounded-full">
+            </div>
+            <div class="flex-1">
+                <a href="{% url 'chat' username=user.username %}">
+                    <h2 class="text-lg font-semibold">{{user.username}}</h2>
+                </a>
+
+            </div>
+        </div>
+        {% endfor %}
+
+
+
+    </div>
+</div>
+
+
+{% comment %} <div class="back-container">
+    <div class="container-fluid front-container">
+        <div class="back-top"></div>
+        <div class="back-main"></div>
+    </div>
+    <div class="container front-container1">
+        <div class="row">
+            <div class="col-sm-4 contacts">
+                <div class="contact-table-scroll">
+                    <table class="table table-hover">
+                        <tbody>
+                            {% for user in users %}
+                            <tr>
+                                <td><img src="{{ user.profile.avatar }}" id="profile-image rounded-circle">
+                                </td>
+                                <td><a href="{% url 'chat' username=user.username %}">{{user.username}}</a></td>
+                            </tr>
+                            {% endfor %}
+
+                            <!-- end -->
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div> {% endcomment %}
+
+{% endblock %}
