@@ -1,13 +1,12 @@
 {% extends "base.html" %}
 {% load static %}
 
-
 {% block layout %}
 <section class="section-conten padding-y" style="min-height:84vh">
 
   {% if request.GET.command == 'verification' %}
 
-  <div class="container ex-auto alert-info text-center" role="alert" style="max-width: 1024px; margin-top: 100px;">
+  <div class="card mx-auto alert-info text-center p-7  font-bold" role="alert" style="max-width: 1024px; background-color: skyblue; margin-top: 100px;">
     Thank you for registering with us , We have sent you a verification email to your email address [{{ request.GET.email }}]
     <br><br>
     Already verified? <a href="{% url 'login' %}">Login</a>
@@ -15,31 +14,31 @@
 
   {% else %}
 
-        <div class="card mx-auto" style="max-width: 380px; margin-top:100px; box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;">
+        <div class="card mx-auto p-5 " style="width: 35rem; margin-top:100px; box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;">
           <div class="card-body">
-          <h4 class="card-title mb-4">Login</h4>
-          {% include 'includes/alert.html' %}
+          <h4 class="card-title mb-8 font-bold mx-auto text-3xl text-indigo-900">Login 🗝️</h4>
+
           <form action="{% url 'login' %}" method="POST">
             {% csrf_token %}
-              <div class="form-group">
-                 <input type="email" class="form-control" placeholder="Email Address" name="email">
+              <div class="form-group mb-5">
+                 <input type="email" class="form-control font-bold text-gray-900" placeholder="Email Address" name="email">
               </div> <!-- form-group// -->
-              <div class="form-group">
-                <input type="password" class="form-control" placeholder="Password" name="password">
-              </div> <!-- form-group// -->
+              <div class="form-group mb-7">
+                <input type="password" class="form-control font-bold text-gray-900" placeholder="Password" name="password">
+              </div>
 
-              <div class="form-group">
+              <div class="form-group text-blue-900 font-bold">
                   <a href="{% url 'forgotPassword' %}" class="float-right">Forgot password?</a>
 
-              </div> <!-- form-group form-check .// -->
-              <div class="form-group">
+              </div>
+              <div class="form-group ">
                   <button type="submit" class="btn btn-primary btn-block"> Login  </button>
               </div> <!-- form-group// -->
           </form>
           </div> <!-- card-body.// -->
         </div> <!-- card .// -->
 
-         <p class="text-center mt-4">Don't have account? <a href="{% url 'register' %}">Sign up</a></p>
+         <p class="text-center mt-4 text-blue-900">Don't have account? <a href="{% url 'register' %}">Sign up</a></p>
          <br><br>
       {% endif %}
     </section>

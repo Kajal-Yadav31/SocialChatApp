@@ -52,3 +52,4 @@ document.querySelector('#chat-message-submit').onclick = function (e) {
     }));
     message_input.value = '';
 }
+

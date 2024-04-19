@@ -31,7 +31,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Socialposts',
-    # 'Socialuser',
     'channels',
     'inbox',
     'accounts',
@@ -82,6 +80,12 @@ WSGI_APPLICATION = 'SocialMedia.wsgi.application'
 ASGI_APPLICATION = 'SocialMedia.asgi.application'
 
 
+AUTH_USER_MODEL = 'accounts.Account'
+
+# AUTHENTICATION_BACKENDS = [
+#     'accounts.backends.EmailBackend',
+#     'django.contrib.auth.backends.ModelBackend',
+# ]
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
@@ -97,13 +101,6 @@ CHANNEL_LAYERS = {
         'BACKEND': 'channels.layers.InMemoryChannelLayer'
     }
 }
-
-AUTH_USER_MODEL = 'accounts.Account'
-
-AUTHENTICATION_BACKENDS = [
-    'accounts.backends.EmailBackend',
-    'django.contrib.auth.backends.ModelBackend',
-]
 
 
 # Password validation
@@ -152,17 +149,10 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-MESSAGE_TAGS = {
-    messages.ERROR: 'danger',
-}
-
-# ACCOUNT_USERNAME_BLACKLIST = [
-#     'admin', 'accounts', 'profile', 'category', 'post', 'inbox']
-
 # smtp configuration
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = config('EMAIL_HOST')
-EMAIL_PORT = config('EMAIL_PORT', cast=int)
-EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
-EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'kajalyadav1370@gmail.com'
+EMAIL_HOST_PASSWORD = 'kopr thid twnt jjjw'

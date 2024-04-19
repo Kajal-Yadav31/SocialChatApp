@@ -46,8 +46,6 @@ def register(request):
             to_email = email
             send_email = EmailMessage(mail_subject, message, to=[to_email])
             send_email.send()
-
-            # messages.success(request, 'Thank you for registering with us , We have sent you a verification email to your email address. Please verify it')
             return redirect('/accounts/login/?command=verification&email='+email)
 
     else:
@@ -62,14 +60,12 @@ def login_user(request):
     if request.method == 'POST':
         email = request.POST['email']
         password = request.POST['password']
-        print('email:', email)
-        print('password:', password)
-        user = authenticate(email=email, password=password)
-        print('user:', user)
+        users = authenticate(email=email, password=password)
+        print('user:', users)
 
-        if user is not None:
-            login(request, user)
-            ('profile-registercreate')
+        if users is not None:
+            login(request, users)
+            return redirect('profile-registercreate')
 
         else:
             messages.error(request, 'Please! Enter correct email and password')
@@ -80,7 +76,6 @@ def login_user(request):
 @login_required(login_url='login')
 def logout_user(request):
     logout(request)
-    messages.success(request, 'You are logged out')
     return redirect('login')
 
 

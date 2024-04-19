@@ -2,20 +2,99 @@
 {% load static %}
 
 
+
 {% block layout %}
 <section class="section-content padding-y">
 
-    <!-- ============================ COMPONENT REGISTER   ================================= -->
-        <div class="card mx-auto" style="max-width:520px; margin-top:40px; box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;">
+    <div class="sm:mx-auto sm:w-full sm:max-w-md" style="margin-top:4rem;">
+        <img class="mx-auto h-10 w-auto" src="https://www.svgrepo.com/show/301692/login.svg" alt="Workflow">
+        <h2 class="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
+            Create a new account
+        </h2>
+        <p class="mt-2 text-center text-sm leading-5 text-gray-500 max-w">
+            Or
+            <a href="{% url 'login' %}"
+                class="font-medium text-blue-600 hover:text-blue-500 focus:outline-none focus:underline transition ease-in-out duration-150">
+                login to your account
+            </a>
+        </p>
+    </div>
+
+        <div class="card mx-auto p-5" style="width: 40rem; margin-top:40px; box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;">
+          <article class="card-body">
+
+            {% comment %} <header class="mb-4"><h4 class="card-title mb-8 font-bold mx-auto text-3xl text-indigo-900">👨‍💻 Sign up</h4></header> {% endcomment %}
+            <form action="{% url 'register' %}" method="POST">
+                {% csrf_token %}
+
+                    <div class="flex form-row mb-4 ">
+                        <div class="form-group mr-5">
+                            <label class="font-bold text-gray-900">First name</label>
+                              {{ form.first_name }}
+                        </div> <!-- form-group end.// -->
+                        <div class="form-group">
+                            <label class="font-bold text-gray-900">Last name</label>
+                              {{ form.last_name }}
+                        </div> <!-- form-group end.// -->
+                    </div> <!-- form-row end.// -->
+                    <div class="flex form-row mb-4">
+                        <div class="form-group mr-5">
+                          <label  class="font-bold text-gray-900">Email Address</label>
+                          {{ form.email }}
+                        </div> <!-- form-group end.// -->
+                        <div class="form-group ">
+                          <label  class="font-bold text-gray-900">Phone Number</label>
+                          {{ form.phone_number }}
+                        </div> <!-- form-group end.// -->
+                    </div> <!-- form-row.// -->
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label  class="font-bold text-gray-900">Create password</label>
+                            {{ form.password }}
+                        </div> <!-- form-group end.// -->
+                        <div class="form-group col-md-6 mb-7">
+                            <label  class="font-bold text-gray-900">Repeat password</label>
+                            {{ form.confirm_password }}
+                        </div> <!-- form-group end.// -->
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block"> Register  </button>
+                    </div> <!-- form-group// -->
+                {{ form.email.errors }}
+                {{ form.non_field_errors }}
+                </form>
+            </article><!-- card-body.// -->
+        </div> <!-- card .// -->
+        <p class="text-center mt-4">Have an account? <a href="{% url 'login' %}">Log In</a></p>
+        <br><br>
+    </section>
+
+{% endblock %}
+{% comment %} {% block layout %}
+
+    <div class="sm:mx-auto sm:w-full sm:max-w-md" style="margin-top:4rem;">
+        <img class="mx-auto h-10 w-auto" src="https://www.svgrepo.com/show/301692/login.svg" alt="Workflow">
+        <h2 class="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
+            Create a new account
+        </h2>
+        <p class="mt-2 text-center text-sm leading-5 text-gray-500 max-w">
+            Or
+            <a href="{% url 'login' %}"
+                class="font-medium text-blue-600 hover:text-blue-500 focus:outline-none focus:underline transition ease-in-out duration-150">
+                login to your account
+            </a>
+        </p>
+    </div>
+        <div class="card mx-auto" style="max-width:520px; margin-top:40px; box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset; padding-left:3rem; padding-right:3rem; padding-top:2rem; padding-bottom:2rem; ">
           <article class="card-body">
             {% include 'includes/alert.html' %}
-            <header class="mb-4"><h4 class="card-title">Sign up</h4></header>
+
             <form action="{% url 'register' %}" method="POST">
                 {% csrf_token %}
 
                     <div class="form-row">
-                        <div class="col form-group">
-                            <label>First name</label>
+                        <div class="col form-group m-2">
+                            <label class="">First name</label>
                               {{ form.first_name }}
                         </div> <!-- form-group end.// -->
                         <div class="col form-group">
@@ -43,7 +122,7 @@
                             {{ form.confirm_password }}
                         </div> <!-- form-group end.// -->
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mt-5 w-7">
                         <button type="submit" class="btn btn-primary btn-block"> Register  </button>
                     </div> <!-- form-group// -->
                 {{ form.email.errors }}
@@ -53,6 +132,6 @@
         </div> <!-- card .// -->
         <p class="text-center mt-4">Have an account? <a href="{% url 'login' %}">Log In</a></p>
         <br><br>
-    </section>
 
-{% endblock %}
+
+{% endblock %} {% endcomment %}
