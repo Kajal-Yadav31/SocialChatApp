@@ -128,8 +128,8 @@ def comment_sent(request, pk):
         'comment': comment,
         'replyform': replyform
     }
-    # return redirect('post', post.id)
-    return render(request, 'snippets/add_comment.html', context)
+    return redirect('post', post.id)
+    # return render(request, 'snippets/add_comment.html', context)
 
 
 @login_required

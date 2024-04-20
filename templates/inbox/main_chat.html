@@ -74,11 +74,11 @@
         <header class="bg-red-200 p-2 text-gray-700 flex">
             <img src="{{ user.profile.avatar }}" alt="" class="w-12 h-11 mr-3 rounded-full">
             <h1 class="text-2xl font-bold">{{user.username}}</h1>
-            {% if user.userprofilemodel.online_status %}
+            {% comment %} {% if user.userprofilemodel.online_status %}
             <small id="{{user.username}}_small">Online</small>
             {% else %}
             <small id="{{user.username}}_small">Offline</small>
-            {% endif %}
+            {% endif %} {% endcomment %}
 
         </header>
 

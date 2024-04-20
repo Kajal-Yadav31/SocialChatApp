@@ -82,10 +82,10 @@ ASGI_APPLICATION = 'SocialMedia.asgi.application'
 
 AUTH_USER_MODEL = 'accounts.Account'
 
-# AUTHENTICATION_BACKENDS = [
-#     'accounts.backends.EmailBackend',
-#     'django.contrib.auth.backends.ModelBackend',
-# ]
+AUTHENTICATION_BACKENDS = [
+    'accounts.backends.EmailBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
@@ -146,13 +146,17 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger',
+}
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # smtp configuration
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'kajalyadav1370@gmail.com'
-EMAIL_HOST_PASSWORD = 'kopr thid twnt jjjw'
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = config('EMAIL_PORT', cast=int)
+EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')

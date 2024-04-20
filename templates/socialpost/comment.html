@@ -48,16 +48,14 @@
             {% include 'socialpost/reply.html' %}
             {% endfor %}
 
-            {% comment %} {% if user.is_authenticated %} {% endcomment %}
-            <form class="replyform flex justify-between" autocomplete="off"
-            hx-post="{% url 'reply-sent' comment.id %}"
-            hx-target="this"
-            hx-swap="outerHTML" >
+            {% if user.is_authenticated %}
+            <form method="POST" class="replyform flex justify-between" autocomplete="off"
+            action ="{% url 'reply-sent' comment.id %}" >
                 {% csrf_token %}
                 {{ replyform }}
                 <button class="block" type="submit">Submit</button>
             </form>
-            {% comment %} {% endif %} {% endcomment %}
+            {% endif %}
         </div>
     </div>
 </comment>
