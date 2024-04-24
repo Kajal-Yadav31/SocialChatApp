@@ -1,7 +1,7 @@
 # SocialDj - Your Social Media Hub
 
 ## Overview
-SocialDj is a dynamic social media platform developed with Django framework, enabling users to connect, share, and interact online. The website incorporates essential features such as secure authentication, user profile management with editing capabilities, seamless post creation with image selection from Flickr, and interactive engagement through likes, comments, and replies. Additionally, the platform offers a real-time chatting inbox, fostering communication and networking among registered users. 
+SocialDj is a dynamic social media platform developed with Django framework, enabling users to connect, share, and interact online. The website incorporates essential features such as secure authentication, user profile management with editing capabilities, seamless post creation with image selection from Flickr, and interactive engagement through likes, comments, and replies. Additionally, the platform offers a real-time chatting inbox, fostering communication and networking among registered users.
 
 
 ## Demo
@@ -23,9 +23,10 @@ SocialDj is a dynamic social media platform developed with Django framework, ena
    - Users can create posts by selecting pictures from Flickr.com.
    - Utilized Beautiful Soup in Python to fetch photos from Flickr.
    - Users can add captions and specify categories for their posts to organize content effectively.
+   - Users can delete and edit his/her post.
 
 4. **Social Interaction:**
-   - Implemented features for users to like, comment on, and reply to specific posts.
+   - Implemented features for users to like, comment on, and reply to specific posts .
    - Encourages social engagement and interaction among users within the platform.
 
 5. **Chatting Inbox:**
@@ -35,16 +36,19 @@ SocialDj is a dynamic social media platform developed with Django framework, ena
 ## Getting Started
 
 ### Prerequisites
-- Python 3.11.2
-- Django 4.2.1
-- Additional dependencies are mention in the requirement.txt file
+- Docker installed on your machine. You can download and install Docker from [here](https://www.docker.com/get-started).
 
-### Installation
-1. Clone the repository: `git clone https://github.com/Kajal-Yadav31/`
-2. Navigate to the project directory: `r`
-3. Install dependencies: `pip install -r requirements.txt`
-4. Apply migrations: `python manage.py migrate`
-5. Run the development server: `python manage.py runserver`
+### Installation with Docker
+To run the application using Docker, follow these steps:
+
+1. Clone the repository:
+   - git clone https://github.com/Kajal-Yadav31/SocialChatApp.git
+2. Navigate to the project directory:
+   - cd SocialChatApp
+3. Build the Docker image:
+   - docker build -t SocialDj .
+4. Run the Docker container:
+   - docker run -d -p 8000:8000 SocialDj
 
 ### Usage
 - Access the application at `http://localhost:8000/` in your web browser.
