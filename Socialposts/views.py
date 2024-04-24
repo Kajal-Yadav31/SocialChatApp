@@ -94,13 +94,6 @@ def post_page_view(request, pk):
     commentform = CommentCreateForm()
     replyform = ReplyCreateForm()
 
-    # if request.htmx:
-    #     if 'top' in request.GET:
-    #         comments = post.comments.annotate(num_likes=Count('likes')).filter(num_likes__gt=0).order_by('-num_likes')
-    #     else:
-    #         comments = post.comments.all()
-    #     return render(request, 'snippets/loop_postpage_comments.html', {'comments': comments, 'replyform': replyform})
-
     context = {
         'post': post,
         'commentform': commentform,
@@ -129,7 +122,7 @@ def comment_sent(request, pk):
         'replyform': replyform
     }
     return redirect('post', post.id)
-    # return render(request, 'snippets/add_comment.html', context)
+
 
 
 @login_required
@@ -157,13 +150,6 @@ def reply_sent(request, pk):
             reply.parent_comment = comment
             reply.save()
 
-    # context = {
-    #     'reply': reply,
-    #     'comment': comment,
-    #     'replyform': replyform
-    # }
-
-    # return render(request, 'reply.html', context)
     return redirect('post', comment.parent_post.id)
 
 
@@ -178,18 +164,6 @@ def reply_delete_view(request, pk):
 
     return render(request, 'socialpost/reply_delete.html', {'reply': reply})
 
-
-# def like_post(request, pk):
-#     post = get_object_or_404(Post, id=pk)
-#     user_exist = post.likes.filter(username=request.user.username).exists()
-
-#     if post.author != request.user:
-#         if user_exist:
-#             post.likes.remove(request.user)
-#         else:
-#             post.likes.add(request.user)
-
-#     return render(request, 'snippets/likes.html', {'post': post})
 
 
 def like_toggle(model):

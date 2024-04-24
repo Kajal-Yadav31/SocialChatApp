@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import RegisterationForm
 from .models import Account, Profile
+from Socialposts.models import Post
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, Http404
@@ -173,6 +174,7 @@ def profile_view(request, username=None):
             profile = request.user.profile
         except:
             raise Http404()
+
     return render(request, 'accounts/profile.html', {'profile': profile})
 
 
