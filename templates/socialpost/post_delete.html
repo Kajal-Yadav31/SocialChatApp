@@ -1,14 +1,14 @@
 {% extends 'layouts/b.html' %}
 
 {% block content %}
-<div class="md:flex items-center">
-    <div class="w-full md:max-w-sm mr-6 md:[&>*>*>p]:text-4xl">
+<div class="md:flex items-center ">
+   <div class="w-full flex md:max-w-lg mr-6 md:[&>*>*>p]:text-4xl">
         {% include 'socialpost/post.html' %}
     </div>
     <div>
         <h1>Delete Post</h1>
         <p class="mb-6">Are you sure you want to delete this post?</p>
-        
+
         <form method='POST'>
             {% csrf_token %}
             <button type="submit">Confirm</button>
