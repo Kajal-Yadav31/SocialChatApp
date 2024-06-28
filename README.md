@@ -1,9 +1,26 @@
 # SocialDj - Your Social Media Hub
 
 ## Demo
-![Screenshot 2024-06-28 112509](https://github.com/Kajal-Yadav31/SocialChatApp/assets/129850619/17d183d4-7220-472d-a1d1-ba7500fd3821)
+
+### ScreenShots of project:
+![Screenshot 2024-06-28 112400](https://github.com/Kajal-Yadav31/SocialChatApp/assets/129850619/8c68decd-82e9-4f2d-868b-fcd803b79d4c)
+
+![Screenshot 2024-06-28 112415](https://github.com/Kajal-Yadav31/SocialChatApp/assets/129850619/90157362-307b-46b6-9da5-37b41361cacf)
+
+![Screenshot 2024-06-28 112429](https://github.com/Kajal-Yadav31/SocialChatApp/assets/129850619/cda51e61-6764-460c-af6f-4f518ebf3bca)
+
+![Screenshot 2024-06-28 112509](https://github.com/Kajal-Yadav31/SocialChatApp/assets/129850619/a59471d1-534f-4c11-95e9-2aad18307128)
+
+![Screenshot 2024-06-28 112030](https://github.com/Kajal-Yadav31/SocialChatApp/assets/129850619/6c4a5de6-3120-46d5-82f2-ebc340bcd395)
+
+![Screenshot 2024-06-28 111951](https://github.com/Kajal-Yadav31/SocialChatApp/assets/129850619/bcaced76-f819-446a-a735-78904abc4faa)
+
+![Screenshot 2024-06-28 111920](https://github.com/Kajal-Yadav31/SocialChatApp/assets/129850619/fb22f60b-ba4b-4091-96b5-67cd11ade657)
+
+![Screenshot 2024-06-28 111856](https://github.com/Kajal-Yadav31/SocialChatApp/assets/129850619/cea0d36c-b05d-4d8d-b7c6-217d615ec014)
 
 
+![Screenshot 2024-06-28 112333](https://github.com/Kajal-Yadav31/SocialChatApp/assets/129850619/72853817-8063-432e-a565-bf8021e30afa)
 
 ## Overview
 SocialDj is a dynamic social media platform developed with Django framework, enabling users to connect, share, and interact online. The website incorporates essential features such as secure authentication, user profile management with editing capabilities, seamless post creation with image selection from Flickr, and interactive engagement through likes, comments, and replies. Additionally, the platform offers a real-time chatting inbox, fostering communication and networking among registered users.
