@@ -2,6 +2,13 @@
 
 ## Demo
 
+### Project Demo video:
+
+
+https://github.com/Kajal-Yadav31/SocialChatApp/assets/129850619/2103c078-d48c-429a-bf02-6170c16816c7
+
+
+
 ### ScreenShots of project:
 ![Screenshot 2024-06-28 112400](https://github.com/Kajal-Yadav31/SocialChatApp/assets/129850619/8c68decd-82e9-4f2d-868b-fcd803b79d4c)
 
