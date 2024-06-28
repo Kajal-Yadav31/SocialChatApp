@@ -1,6 +1,7 @@
 # SocialDj - Your Social Media Hub
 
 ## Demo
+![Screenshot 2024-06-28 112509](https://github.com/Kajal-Yadav31/SocialChatApp/assets/129850619/17d183d4-7220-472d-a1d1-ba7500fd3821)
 
 
 
