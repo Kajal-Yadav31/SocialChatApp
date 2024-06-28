@@ -1,10 +1,11 @@
 # SocialDj - Your Social Media Hub
 
+## Demo
+
+
+
 ## Overview
 SocialDj is a dynamic social media platform developed with Django framework, enabling users to connect, share, and interact online. The website incorporates essential features such as secure authentication, user profile management with editing capabilities, seamless post creation with image selection from Flickr, and interactive engagement through likes, comments, and replies. Additionally, the platform offers a real-time chatting inbox, fostering communication and networking among registered users.
-
-
-## Demo
 
 
 ## Features
@@ -35,20 +36,32 @@ SocialDj is a dynamic social media platform developed with Django framework, ena
 
 ## Getting Started
 
+### Clone the Repository
+
+1) First, clone the repository to your local machine:
+
+git clone https://github.com/Kajal-Yadav31/SocialChatApp.git
+
+
+2) cd `SocialChatApp`
+
+
+## Docker Setup
+
 ### Prerequisites
 - Docker installed on your machine. You can download and install Docker from [here](https://www.docker.com/get-started).
 
-### Installation with Docker
-To run the application using Docker, follow these steps:
+### Running the project
 
-1. Clone the repository:
-   - git clone https://github.com/Kajal-Yadav31/SocialChatApp.git
-2. Navigate to the project directory:
-   - cd SocialChatApp
-3. Build the Docker image:
-   - docker build -t SocialDj .
-4. Run the Docker container:
-   - docker run -d -p 8000:8000 SocialDj
+1) To Build and Start the Docker Container :
+    `docker-compose up -d`
+
+2) Apply Migrations :
+   ` docker-compose exec web python manage.py migrate`
+
+3) Create a Superuser :to access admin panel
+    `docker-compose exec web python manage.py createsuperuser`
+
 
 ### Usage
 - Access the application at `http://localhost:8000/` in your web browser.
@@ -60,4 +73,4 @@ This project is licensed under the [MIT License]
 
 
 ## Contact
-For inquiries or issues, contact [kajalyadav3107@gmail.com].
+For inquiries or issues, contact [kajalyadav070496@gmail.com].
