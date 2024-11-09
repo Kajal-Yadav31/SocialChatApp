@@ -1,15 +1,24 @@
 # SocialDj - Your Social Media Hub
 
-## Demo
+## Project Demo video:
 
-### Project Demo video:
+### User Authentication:
 
-
-https://github.com/Kajal-Yadav31/SocialChatApp/assets/129850619/2103c078-d48c-429a-bf02-6170c16816c7
-
+https://github.com/user-attachments/assets/86133df2-01d6-4796-8b7c-5a41a451dbd0
 
 
-### ScreenShots of project:
+### Post Creation demo:
+
+https://github.com/user-attachments/assets/be336e57-4dca-4fc1-a943-9c6e7f7aea5c
+
+
+### Real-time Chat demo:
+
+https://github.com/user-attachments/assets/181e3b63-b2a8-4f69-bed4-3b8042461f37
+
+
+
+## ScreenShots of project:
 ![Screenshot 2024-06-28 112400](https://github.com/Kajal-Yadav31/SocialChatApp/assets/129850619/8c68decd-82e9-4f2d-868b-fcd803b79d4c)
 
 ![Screenshot 2024-06-28 112415](https://github.com/Kajal-Yadav31/SocialChatApp/assets/129850619/90157362-307b-46b6-9da5-37b41361cacf)
