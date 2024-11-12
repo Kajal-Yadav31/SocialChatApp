@@ -1,25 +1,22 @@
 from django.db import models
 from accounts.models import Account
 import uuid
+from django.core.validators import FileExtensionValidator
 
 
 class Post(models.Model):
-    title = models.CharField(max_length=500)
-    artist = models.CharField(max_length=500, null=True)
-    url = models.URLField(max_length=500, null=True)
-    image = models.URLField(max_length=500)
+    image = models.ImageField(upload_to='uploads/', null=True, blank=True)
     author = models.ForeignKey(
         Account, on_delete=models.SET_NULL, null=True, related_name='posts')
     body = models.TextField()
     likes = models.ManyToManyField(
         Account, related_name="likedposts", through="LikedPost")
-    tags = models.ManyToManyField('Tag')
     created = models.DateTimeField(auto_now_add=True)
     id = models.CharField(max_length=100, default=uuid.uuid4,
                           unique=True, primary_key=True, editable=False)
 
     def __str__(self):
-        return str(self.title)
+        return str(self.body)
 
     class Meta:
         ordering = ['-created']
@@ -31,19 +28,7 @@ class LikedPost(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'{self.user.username} : {self.post.title}'
-
-
-class Tag(models.Model):
-    name = models.CharField(max_length=20)
-    slug = models.SlugField(max_length=20, unique=True)
-    order = models.IntegerField(null=True)
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        ordering = ['order']
+        return f'{self.user.username} '
 
 
 class Comment(models.Model):

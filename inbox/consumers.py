@@ -11,6 +11,7 @@ class PersonalChatConsumer(AsyncWebsocketConsumer):
         other_user_id = self.scope['url_route']['kwargs']['id']
         if int(my_id) > int(other_user_id):
             self.room_name = f'{my_id}-{other_user_id}'
+
         else:
             self.room_name = f'{other_user_id}-{my_id}'
 
@@ -59,5 +60,3 @@ class PersonalChatConsumer(AsyncWebsocketConsumer):
     def save_message(self, username, thread_name, message):
         chat_obj = ChatModel.objects.create(
             sender=username, message=message, thread_name=thread_name)
-        # other_user_id = self.scope['url_route']['kwargs']['id']
-        # get_user = Account.objects.get(id=other_user_id)

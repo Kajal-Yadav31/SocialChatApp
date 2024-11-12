@@ -9,19 +9,11 @@ from django.contrib import messages
 # Create your views here.
 
 
-def home(request, tag=None):
-    if tag:
-        posts = Post.objects.filter(tag__slug=tag)
-        tag = get_object_or_404(Tag, slug=tag)
-    else:
-        posts = Post.objects.all()
-
-    categories = Tag.objects.all()
+def home(request):
+    posts = Post.objects.all()
 
     context = {
         'posts': posts,
-        'categories': categories,
-        'tag': tag
     }
 
     return render(request, 'socialpost/home.html', context)
@@ -29,33 +21,19 @@ def home(request, tag=None):
 
 @login_required
 def post_create_view(request):
-    form = PostCreateForm()
     if request.method == 'POST':
-        form = PostCreateForm(request.POST)
+        # Include request.FILES for file uploads
+        form = PostCreateForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
-
-            website = requests.get(form.data['url'])
-            sourcecode = BeautifulSoup(website.text, 'html.parser')
-            find_image = sourcecode.select(
-                'meta[content^="https://live.staticflickr.com/"]')
-            image = find_image[0]['content']
-
-            post.image = image
-
-            find_title = sourcecode.select('h1.photo-title')
-            title = find_title[0].text.strip()
-            post.title = title
-
-            find_artist = sourcecode.select('a.owner-name')
-            artist = find_artist[0].text.strip()
-            post.artist = artist
-
             post.author = request.user
+            post.image = form.cleaned_data['image']
 
             post.save()
             form.save_m2m()
             return redirect('home')
+    else:
+        form = PostCreateForm()
     return render(request, 'socialpost/post_create.html', {'form': form})
 
 
@@ -124,7 +102,6 @@ def comment_sent(request, pk):
     return redirect('post', post.id)
 
 
-
 @login_required
 def comment_delete_view(request, pk):
     post = get_object_or_404(Comment, id=pk, author=request.user)
@@ -163,7 +140,6 @@ def reply_delete_view(request, pk):
         return redirect('post', reply.parent_comment.parent_post.id)
 
     return render(request, 'socialpost/reply_delete.html', {'reply': reply})
-
 
 
 def like_toggle(model):

@@ -15,7 +15,7 @@
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit" >Submit</button>
-    <a class="button secondaryAction ml-1" href="{{ request.META.HTTP_REFERER}}">Skip</a>
+    <a class="button secondaryAction ml-1" href="{% url 'home' %}">Skip</a>
 </form>
 
 
