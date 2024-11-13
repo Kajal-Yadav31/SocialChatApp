@@ -8,6 +8,7 @@ from django.http import HttpResponse, Http404
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 from .forms import *
+from django.db.models import Q
 
 # verification email
 from django.contrib.sites.shortcuts import get_current_site
@@ -207,3 +208,21 @@ def profile_delete_view(request):
         messages.success(request, 'Account deleted')
         return redirect('home')
     return render(request, 'accounts/profile_delete.html')
+
+
+def account_search_view(request):
+    query = request.GET.get('q', '')
+    users = []
+
+    if query:
+        users = Account.objects.filter(
+            Q(username__icontains=query) |
+            Q(first_name__icontains=query) |
+            Q(last_name__icontains=query)
+        ).exclude(id=request.user.id)
+
+    context = {
+        'accounts': users,
+    }
+
+    return render(request, 'accounts/search_user.html', context)

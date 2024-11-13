@@ -1,13 +1,33 @@
 {% load static%}
 {% include 'includes/messages.html' %}
 <header x-data="{ mobilenavOpen: false }" class="md:flex items-center justify-between [&>*]:px-8 bg-gray-800 h-20 text-white sticky top-0 z-40">
-    <div class="flex items-center justify-between h-20">
+    <div class="flex items-center justify-between h-20" >
         <logo>
             <a class="flex items-center gap-1" href="/">
                 <img class="w-10 -mt-1" src="{% static 'images/media_icon.svg' %}"/>
                 <span class="text-3xl font-bold">SociaDj</span>
             </a>
         </logo>
+
+        <form onsubmit="return executeQuery();" class="flex items-center max-w-sm mx-auto" style="margin-left:15rem; width:25rem;">
+            <label for="simple-search" class="sr-only">Search</label>
+            <div class="relative w-full">
+                <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5v10M3 5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm12 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0V6a3 3 0 0 0-3-3H9m1.5-2-2 2 2 2"/>
+                    </svg>
+                </div>
+                <!-- Updated the ID here -->
+                <input type="text" id="simple-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Users name..." required />
+            </div>
+            <button type="submit" class="p-2 ms-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                </svg>
+                <span class="sr-only">Search</span>
+            </button>
+        </form>
+
         <mobileicon class="md:hidden">
             <a @click="mobilenavOpen = !mobilenavOpen" class="h-12 w-12 flex items-center justify-center cursor-pointer hover:bg-gray-700 rounded-lg">
                 <img x-show="!mobilenavOpen" class="w-6 h-6 select-none" src="https://img.icons8.com/small/64/ffffff/menu.png"/>
@@ -48,3 +68,17 @@
         </ul>
     </nav>
 </header>
+
+<script type="text/javascript">
+    function executeQuery() {
+        var query = document.getElementById("simple-search").value.trim();
+
+        if (query === "") {
+            alert("Please enter a search term.");
+            return false;
+        }
+
+        window.location.href = "{% url 'search' %}?q=" + encodeURIComponent(query);
+        return false;
+    }
+</script>
