@@ -3,9 +3,9 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .models import *
 from .forms import *
-from bs4 import BeautifulSoup
-import requests
 from django.contrib import messages
+from PIL import Image
+import io
 # Create your views here.
 
 
@@ -22,18 +22,45 @@ def home(request):
 @login_required
 def post_create_view(request):
     if request.method == 'POST':
-        # Include request.FILES for file uploads
         form = PostCreateForm(request.POST, request.FILES)
+
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
-            post.image = form.cleaned_data['image']
+            uploaded_image = form.cleaned_data['image']
 
-            post.save()
-            form.save_m2m()
-            return redirect('home')
+            # Check if the image size exceeds 3MB (3 * 1024 * 1024 bytes)
+            if uploaded_image.size > 3 * 1024 * 1024:
+
+                # Compress the image
+                img = Image.open(uploaded_image)
+                output_format = img.format
+                buffer = io.BytesIO()
+
+                # Compress the image with reduced quality
+                img.save(buffer, format=output_format, quality=60)
+                buffer.seek(0)
+
+                # Save the compressed image to the Post model
+                post.image.save(f'compressed_{uploaded_image.name}', buffer)
+
+                # Provide a download option for the compressed image
+                response = HttpResponse(
+                    buffer.getvalue(), content_type=f'image/{output_format.lower()}'
+                )
+                response['Content-Disposition'] = f'attachment; filename=compressed_{uploaded_image.name}'
+                # Automatically triggers download of the compressed image
+                return redirect('home')
+
+            else:
+                # If image size is <= 3MB, save directly
+                post.image = uploaded_image
+                post.save()
+                form.save_m2m()
+                return redirect('home')
     else:
         form = PostCreateForm()
+
     return render(request, 'socialpost/post_create.html', {'form': form})
 
 
