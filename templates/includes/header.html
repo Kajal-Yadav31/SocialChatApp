@@ -8,7 +8,7 @@
                 <span class="text-3xl font-bold">SociaDj</span>
             </a>
         </logo>
-
+        {% if user.is_authenticated %}
         <form onsubmit="return executeQuery();" class="flex items-center max-w-sm mx-auto" style="margin-left:15rem; width:25rem;">
             <label for="simple-search" class="sr-only">Search</label>
             <div class="relative w-full">
@@ -27,6 +27,7 @@
                 <span class="sr-only">Search</span>
             </button>
         </form>
+        {% endif %}
 
         <mobileicon class="md:hidden">
             <a @click="mobilenavOpen = !mobilenavOpen" class="h-12 w-12 flex items-center justify-center cursor-pointer hover:bg-gray-700 rounded-lg">

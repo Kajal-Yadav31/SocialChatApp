@@ -43,14 +43,21 @@ def post_create_view(request):
 
                 # Save the compressed image to the Post model
                 post.image.save(f'compressed_{uploaded_image.name}', buffer)
+                post.save()
+                form.save_m2m()
 
                 # Provide a download option for the compressed image
                 response = HttpResponse(
                     buffer.getvalue(), content_type=f'image/{output_format.lower()}'
                 )
                 response['Content-Disposition'] = f'attachment; filename=compressed_{uploaded_image.name}'
+
+                response.write(
+                    '<html><head><meta http-equiv="refresh" content="1;url=/home/"></head></html>'
+                )
+
                 # Automatically triggers download of the compressed image
-                return redirect('home')
+                return response
 
             else:
                 # If image size is <= 3MB, save directly
@@ -62,6 +69,48 @@ def post_create_view(request):
         form = PostCreateForm()
 
     return render(request, 'socialpost/post_create.html', {'form': form})
+# def post_create_view(request):
+#     if request.method == 'POST':
+#         form = PostCreateForm(request.POST, request.FILES)
+
+#         if form.is_valid():
+#             post = form.save(commit=False)
+#             post.author = request.user
+#             uploaded_image = form.cleaned_data['image']
+
+#             # Check if the image size exceeds 3MB (3 * 1024 * 1024 bytes)
+#             if uploaded_image.size > 3 * 1024 * 1024:
+
+#                 # Compress the image
+#                 img = Image.open(uploaded_image)
+#                 output_format = img.format
+#                 buffer = io.BytesIO()
+
+#                 # Compress the image with reduced quality
+#                 img.save(buffer, format=output_format, quality=60)
+#                 buffer.seek(0)
+
+#                 # Save the compressed image to the Post model
+#                 post.image.save(f'compressed_{uploaded_image.name}', buffer)
+
+#                 # Provide a download option for the compressed image
+#                 response = HttpResponse(
+#                     buffer.getvalue(), content_type=f'image/{output_format.lower()}'
+#                 )
+#                 response['Content-Disposition'] = f'attachment; filename=compressed_{uploaded_image.name}'
+#                 # Automatically triggers download of the compressed image
+#                 return redirect('home')
+
+#             else:
+#                 # If image size is <= 3MB, save directly
+#                 post.image = uploaded_image
+#                 post.save()
+#                 form.save_m2m()
+#                 return redirect('home')
+#     else:
+#         form = PostCreateForm()
+
+#     return render(request, 'socialpost/post_create.html', {'form': form})
 
 
 @login_required

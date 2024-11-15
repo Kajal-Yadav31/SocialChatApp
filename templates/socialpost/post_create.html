@@ -6,11 +6,54 @@
 <div class="card !p-8">
 
 
-    <form method='POST'  enctype="multipart/form-data">
+    <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="mt-1">Submit Post</button>
-        <a class="button secondaryAction ml-1" href="{{ request.META.HTTP_REFERER }}">Cancel</a>
+
+        <div  style="display: flex; align-items: center; margin-bottom: 15px;">
+            <label for="id_image" style="width: 80px; font-weight:bold;">Image:</label>
+            <input type="file" name="image" accept="image/*" id="id_image" class="block" style="flex-grow: 1; margin-right: 10px;">
+        </div>
+            <!-- Validation message below the image upload field -->
+            <div id="imageError" style=" color: #2B1367; font-size: 16px; margin-top: 5px; display: none; font-weight:bold;"></div>
+
+
+        <div style="display: flex; align-items: center; margin-top: 20px;">
+            <label for="id_body" style="width: 80px; font-weight:bold;">Caption:</label>
+            <textarea name="body" cols="40" rows="3" placeholder="Add a caption here..." class="font1 text-4xl" required id="id_body" style="flex-grow: 1;"></textarea>
+        </div>
+
+        <button type="submit" style="margin-top: 20px;">Create Post</button>
     </form>
+
 </div>
+
+<script>
+    // JavaScript to check image size
+    document.addEventListener('DOMContentLoaded', function() {
+        const imageInput = document.getElementById('id_image');
+        const errorMessage = document.getElementById('imageError');
+
+        imageInput.addEventListener('change', function() {
+            const file = this.files[0];
+
+            if (file) {
+                const fileSizeInMB = file.size / (1024 * 1024); // Convert size to MB
+                if (fileSizeInMB > 3) {
+                    // Show error message if file size is larger than 3MB
+                    errorMessage.style.display = 'block';
+                    errorMessage.textContent = 'The image you uploaded is larger than 3MB. It will be compressed automatically before uploading.';
+                } else {
+                    // Hide error message if file size is within the limit
+                    errorMessage.style.display = 'none';
+                    errorMessage.textContent = '';
+                }
+            } else {
+                // Hide the error message if no file is selected
+                errorMessage.style.display = 'none';
+                errorMessage.textContent = '';
+            }
+        });
+    });
+</script>
+
 {% endblock %}
