@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'channels',
     'inbox',
     'accounts',
+    # 'friend',
 ]
 
 # SITE_ID = 1
@@ -150,19 +151,15 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# CELERY SETTINGS
 
-CELERY_ACCEPT_CONTENT = ['json']
-CELERY_TASK_SERIALIZER = 'json'
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_RESULT_SERIALIZER = 'json'
-CELERY_TIMEZONE = 'UTC'
-CELERY_ENABLE_UTC = True
-CELERY_TASK_ACKS_LATE = True
-CELERY_WORKER_CONCURRENCY = 4  # Adjust based on
-CELERY_WORKER_PREFETCH_MULTIPLIER = 1
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Asia/Kolkata'
 
-CELERY_BROKER_URL = 'redis://localhost:6379'
-CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379/0'
+
 # smtp configuration
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = config('EMAIL_HOST')
