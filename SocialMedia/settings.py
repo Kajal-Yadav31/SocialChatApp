@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=True, cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['socialmedia-env.eba-wan5g3kf.us-west-2.elasticbeanstalk.com']
 
 
 # Application definition
@@ -41,10 +41,8 @@ INSTALLED_APPS = [
     'channels',
     'inbox',
     'accounts',
-    # 'friend',
 ]
 
-# SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
